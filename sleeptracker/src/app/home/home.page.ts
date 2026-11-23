@@ -5,6 +5,7 @@ import { SleepData } from '../data/sleep-data';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
 import { LogOvernightComponent } from '../log-overnight/log-overnight.component';
+import { LogSleepinessComponent } from '../log-sleepiness/log-sleepiness.component';
 
 @Component({
   selector: 'app-home',
@@ -28,6 +29,11 @@ export class HomePage {
 
 	async openLogOvernight() {
 		var modal = await this.modalController.create({ component: LogOvernightComponent });
+		await modal.present();
+	}
+
+	async openLogSleepiness() {
+		var modal = await this.modalController.create({ component: LogSleepinessComponent });
 		await modal.present();
 	}
 }

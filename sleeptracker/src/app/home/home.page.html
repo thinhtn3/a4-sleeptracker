@@ -18,5 +18,6 @@
     @for (data of allSleepData; track data.id) {
       <p>{{ data.dateString() }}: {{ data.summaryString() }}</p>
     }
+    <ion-button (click)="openLogSleepiness()">Log sleepiness</ion-button>
   </div>
 </ion-content>

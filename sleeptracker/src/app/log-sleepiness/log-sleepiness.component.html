@@ -1,0 +1,9 @@
+<ion-content>
+  <ion-list>
+    @for (level of levels; track level) {
+      <ion-item button (click)="save(level)">
+        <ion-label>{{ level }}: {{ scaleValues[level] }}</ion-label>
+      </ion-item>
+    }
+  </ion-list>
+</ion-content>
