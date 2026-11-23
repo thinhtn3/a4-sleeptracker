@@ -47,4 +47,24 @@ export class SleepService {
 		SleepService.AllSleepData.push(sleepData);
 		SleepService.AllSleepinessData.push(sleepData);
 	}
+	
+	public updateOvernightData(updated:OvernightSleepData) {
+		SleepService.AllOvernightData = SleepService.AllOvernightData.map(entry => entry.id === updated.id ? updated : entry);
+		SleepService.AllSleepData = SleepService.AllSleepData.map(entry => entry.id === updated.id ? updated : entry);
+	}
+
+	public deleteOvernightData(id:string) {
+		SleepService.AllOvernightData = SleepService.AllOvernightData.filter(entry => entry.id !== id);
+		SleepService.AllSleepData = SleepService.AllSleepData.filter(entry => entry.id !== id);
+	}
+
+	public updateSleepinessData(updated:StanfordSleepinessData) {
+		SleepService.AllSleepinessData = SleepService.AllSleepinessData.map(entry => entry.id === updated.id ? updated : entry);
+		SleepService.AllSleepData = SleepService.AllSleepData.map(entry => entry.id === updated.id ? updated : entry);
+	}
+
+	public deleteSleepinessData(id:string) {
+		SleepService.AllSleepinessData = SleepService.AllSleepinessData.filter(entry => entry.id !== id);
+		SleepService.AllSleepData = SleepService.AllSleepData.filter(entry => entry.id !== id);
+	}
 }
