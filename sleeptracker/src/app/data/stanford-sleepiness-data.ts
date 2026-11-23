@@ -13,7 +13,8 @@ export class StanfordSleepinessData extends SleepData {
 	'Sleepy, woozy, fighting sleep; prefer to lie down', //6
 	'No longer fighting sleep, sleep onset soon; having dream-like thoughts']; //7
 
-	private loggedValue:number;
+	public loggedValue:number;
+	public note?:string;
 
 	constructor(loggedValue:number, loggedAt:Date = new Date()) {
 		super();

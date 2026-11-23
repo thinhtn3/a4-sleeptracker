@@ -1,13 +1,21 @@
 import { SleepData } from './sleep-data';
 
 export class OvernightSleepData extends SleepData {
-	private sleepStart:Date;
-	private sleepEnd:Date;
+	public sleepStart:Date;
+	public sleepEnd:Date;
+	public quality?:number;
+	public note?:string;
 
 	constructor(sleepStart:Date, sleepEnd:Date) {
 		super();
 		this.sleepStart = sleepStart;
 		this.sleepEnd = sleepEnd;
+	}
+
+	// returns hour slept as decimal. for charts
+	get hoursSlept():number {
+		var difference_ms = this.sleepEnd.getTime() - this.sleepStart.getTime();
+		return difference_ms / (1000*60*60);
 	}
 
 	override summaryString():string {
