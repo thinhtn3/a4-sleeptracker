@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Log Sleep</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="save()">Save</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label>Bedtime</ion-label>
+      <ion-datetime-button datetime="bedtime-picker"></ion-datetime-button>
+    </ion-item>
+    <ion-item>
+      <ion-label>Wake time</ion-label>
+      <ion-datetime-button datetime="wake-picker"></ion-datetime-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime id="bedtime-picker" [(ngModel)]="bedtimeText"></ion-datetime>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime id="wake-picker" [(ngModel)]="wakeTimeText"></ion-datetime>
+    </ng-template>
+  </ion-modal>
+</ion-content>
