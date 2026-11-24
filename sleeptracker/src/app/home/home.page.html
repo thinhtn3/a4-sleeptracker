@@ -31,7 +31,7 @@
             <h2>{{ data.dateString() }}</h2>
             <p>{{ data.summaryString() }}</p>
           </ion-label>
-          <ion-button slot="end" color="danger" (click)="sleepService.deleteData(data.id)">Delete</ion-button>
+          <ion-button slot="end" color="danger" (click)="confirmDelete(data.id)">Delete</ion-button>
         </ion-item>
       }
     </ion-list>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonList, IonItem, IonLabel, ModalController, IonChip } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonList, IonItem, IonLabel, ModalController, IonChip, AlertController } from '@ionic/angular/standalone';
 import { SleepService } from '../services/sleep.service';
 import { SleepData } from '../data/sleep-data';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
@@ -14,7 +14,7 @@ import { LogSleepinessComponent } from '../log-sleepiness/log-sleepiness.compone
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonList, IonItem, IonLabel, IonChip],
 })
 export class HomePage {
-    constructor(public sleepService:SleepService, private modalController:ModalController) {
+    constructor(public sleepService:SleepService, private modalController:ModalController, private alertController:AlertController) {
 
 	}
 
@@ -36,4 +36,16 @@ export class HomePage {
 		var modal = await this.modalController.create({ component: LogSleepinessComponent });
 		await modal.present();
 	}
+
+	async confirmDelete(id:string) {
+	var alert = await this.alertController.create({
+		header: 'Delete this entry?',
+		message: 'This cannot be undone.',
+		buttons: [
+			{ text: 'Cancel', role: 'cancel' },
+			{ text: 'Delete', role: 'destructive', handler: () => this.sleepService.deleteData(id) }
+		]
+	});
+		await alert.present();
+	}	
 }
