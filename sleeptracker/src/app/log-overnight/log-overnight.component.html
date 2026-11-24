@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Log Sleep</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="save()">Save</ion-button>
+      <ion-button [disabled]="!validTimes" (click)="save()">Save</ion-button>   <!-- CHANGED: line 5 -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -30,4 +30,8 @@
       <ion-datetime id="wake-picker" [(ngModel)]="wakeTimeText"></ion-datetime>
     </ng-template>
   </ion-modal>
+
+  @if (!validTimes) {
+    <p>Wake time must be after bedtime.</p>
+  }
 </ion-content>

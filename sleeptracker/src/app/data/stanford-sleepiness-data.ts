@@ -29,4 +29,8 @@ export class StanfordSleepinessData extends SleepData {
 	override dateString():string {
 		return this.loggedAt.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) + ' at ' + this.loggedAt.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 	}
+
+	override typeString():string {
+		return 'Sleepiness';
+	}
 }

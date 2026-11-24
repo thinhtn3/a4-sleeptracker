@@ -37,6 +37,11 @@ export class LogOvernightComponent implements OnInit {
 		this.wakeTimeText = this.toDateTimeString(wakeTime);
 	}
 
+	// helper to check wake time must be after bedtime
+	get validTimes():boolean {
+		return new Date(this.wakeTimeText).getTime() > new Date(this.bedtimeText).getTime();
+	}
+
 	save() {
 		var bedtime = new Date(this.bedtimeText);
 		var wakeTime = new Date(this.wakeTimeText);

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonContent, IonList, IonItem, IonLabel, ModalController } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel, ModalController } from '@ionic/angular/standalone';
 import { SleepService } from '../services/sleep.service';
 import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
 
@@ -7,7 +7,7 @@ import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
 	selector: 'app-log-sleepiness',
 	templateUrl: './log-sleepiness.component.html',
 	styleUrls: ['./log-sleepiness.component.scss'],
-	imports: [IonContent, IonList, IonItem, IonLabel],
+	imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonLabel],
 })
 export class LogSleepinessComponent {
 	// scale (index 0 is unused)
