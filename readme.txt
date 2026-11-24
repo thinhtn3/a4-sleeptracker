@@ -1,64 +1,41 @@
---Readme document for *author(s)*, *email(s)*, *UCI id(s)*--
+Thinh Nguyen 
+thinhtn3@uci.edu
+4029942
+Solo
 
-1. How many assignment points do you believe you completed (replace the *'s with your numbers)?
+1. How long, in hours, did the assignment take?
+8-10 hours
 
-*/10
-- */1 The ability to log overnight sleep
-- */1 The ability to log sleepiness during the day
-- */1 The ability to view these two categories of logged data
-- */2 Either using a native device resource or backing up logged data
-- */2 Following good principles of mobile design
-- */2 Creating a compelling app
-- */1 A readme and demo video which explains how these features were implemented and their design rationale
+2. Who or what online resources did you consult? (list specific URLs and people)
+https://capacitorjs.com/docs/apis/preferences for persistent storage
+https://ionicframework.com/docs/api/datetime-button for selecting date time
+https://ionicframework.com/docs/api/modal for modal overlay
 
-2. How long, in hours, did it take you to complete this assignment?
+3. Any bonus features?
+I added chips to the design to easily differentiate whether a log is logging sleep or sleepiness.
+Also cleaned up the page by centering everything and adjusting the margins and paddings.
 
+4. Design choices
+Logging overnight sleep:
+I use Ionic's date/time pickers with set defaults to 10 pm and 8 am because typing is much slower than tapping on a phone and also reduces error. 
+If a wake time and a bedtime are invalid, then the save button is disabled, preventing incorrect data from being saved. 
 
+Logging sleepiness during the day:
+Each row takes up a full width, with its own description, with its own number followed by description, so tap targets are harder to miss. After tapping, it logs the entry and closes the modal for a quick check-in. 
+Aim to reduce as much friction as possible for the user to log their sleepiness.
 
-3. What online resources did you consult when completing this assignment? (list specific URLs)
+Viewing logged data:
+All log entries are tracked via a chronological list with color-coded chips to easily identify which type of row is which. 
+Delete buttons are in bright red to signal that this is a destructive button for deleting a log.
 
+Native device resource or backing up logged data:
+Log data are stored to the phone's native storage via Capacitor preferences so that, after closing the app, history is still kept without needing an account or internet. 
 
+5. Any struggles?
+Not really. Had experience with React and component libraries before so it translated pretty well.
+The only thing I struggled with was Capacitor to store persistent data locally on mobile rather than localStorage
 
-4. What classmates or other individuals did you consult as part of this assignment? What did you discuss?
-
-
-
-5. Is there anything special we need to know in order to run your code?
-
-
-
---Aim for no more than two sentences for each of the following questions.--
-
-
-6. Did you design your app with a particular type of user in mind? If so, whom?
-
-
-
-7. Did you design your app specifically for iOS or Android, or both?
-
-
-
-8. How can a person log overnight sleep in your app? Why did you choose to support logging overnight sleep in this way?
+6. Who it's for?
+Designed for college students who use iPhone or iOS devices and who want to be able to quickly track their sleep and sleepiness.
 
 
-
-9. How can a person log sleepiness during the day in your app? Why did you choose to support logging sleepiness in this way?
-
-
-
-10. How can a person view the data they logged in your app? Why did you choose to support viewing logged data in this way?
-
-
-
-11. Which feature choose--using a native device resource, backing up logged data, or both?
-
-
-
-12. If you used a native device resource, what feature did you add? How does this feature change the app's experience for a user?
-
-
-
-13. If you backed up logged data, where does it back up to?
-
-
-14. How does your app implement or follow principles of good mobile design?
