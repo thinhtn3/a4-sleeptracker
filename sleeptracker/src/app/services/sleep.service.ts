@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { SleepData } from '../data/sleep-data';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
+import { Preferences } from '@capacitor/preferences';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SleepService {
-	private static LoadDefaultData:boolean = true;
+	private static LoadDefaultData:boolean = false;
 	public static AllSleepData:SleepData[] = [];
 	public static AllOvernightData:OvernightSleepData[] = [];
 	public static AllSleepinessData:StanfordSleepinessData[] = [];
@@ -17,6 +18,7 @@ export class SleepService {
 			this.addDefaultData();
 		SleepService.LoadDefaultData = false;
 	}
+		this.loadData();
 	}
 
 	private addDefaultData() {
@@ -41,11 +43,13 @@ export class SleepService {
 	public logOvernightData(sleepData:OvernightSleepData) {
 		SleepService.AllSleepData.push(sleepData);
 		SleepService.AllOvernightData.push(sleepData);
+		this.saveData();
 	}
 
 	public logSleepinessData(sleepData:StanfordSleepinessData) {
 		SleepService.AllSleepData.push(sleepData);
 		SleepService.AllSleepinessData.push(sleepData);
+		this.saveData();
 	}
 	
 	public updateOvernightData(updated:OvernightSleepData) {
@@ -66,5 +70,31 @@ export class SleepService {
 	public deleteSleepinessData(id:string) {
 		SleepService.AllSleepinessData = SleepService.AllSleepinessData.filter(entry => entry.id !== id);
 		SleepService.AllSleepData = SleepService.AllSleepData.filter(entry => entry.id !== id);
+	}
+
+	private async saveData() {
+		await Preferences.set({ key: 'overnight', value: JSON.stringify(SleepService.AllOvernightData) });
+		await Preferences.set({ key: 'sleepiness', value: JSON.stringify(SleepService.AllSleepinessData) });
+	}
+
+	// turning the date text back into Dates
+	private async loadData() {
+		var overnight = await Preferences.get({ key: 'overnight' });
+		var sleepiness = await Preferences.get({ key: 'sleepiness' });
+
+		var overnightList = JSON.parse(overnight.value || '[]');
+		var sleepinessList = JSON.parse(sleepiness.value || '[]');
+
+		for (var overnightItem of overnightList) {
+			var overnightEntry = new OvernightSleepData(new Date(overnightItem.sleepStart), new Date(overnightItem.sleepEnd));
+			SleepService.AllOvernightData.push(overnightEntry);
+			SleepService.AllSleepData.push(overnightEntry);
+		}
+
+		for (var sleepinessItem of sleepinessList) {
+			var sleepinessEntry = new StanfordSleepinessData(sleepinessItem.loggedValue, new Date(sleepinessItem.loggedAt));
+			SleepService.AllSleepinessData.push(sleepinessEntry);
+			SleepService.AllSleepData.push(sleepinessEntry);
+		}
 	}
 }
